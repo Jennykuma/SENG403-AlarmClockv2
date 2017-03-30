@@ -1,11 +1,11 @@
 package com.example.seng403_group16.alarmclockapplication;
 
 import android.os.Bundle;
-import android.support.*;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -50,8 +50,10 @@ public class Homescreen extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // Show time
-        String currentTimeString = new SimpleDateFormat("HH:mm:ss").format(new Date());
+        // Show time... WELL IT SHOULD
+        while (true) {
+            TextClock clock = (TextClock) findViewById(R.id.textClock);
+        }
 
     }
 
