@@ -50,11 +50,6 @@ public class Homescreen extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // Show time... WELL IT SHOULD
-        while (true) {
-            TextClock clock = (TextClock) findViewById(R.id.textClock);
-        }
-
     }
 
 }
