@@ -105,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     Tab2 tab2 = new Tab2();
                     return tab2;
+                case 2:
+                    Tab3 tab3 = new Tab3();
+                    return tab3;
             }
 
             return PlaceholderFragment.newInstance(position + 1);
@@ -122,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Time";
                 case 1:
-                    return "Alarms";
+                    return "Set Alarm";
                 case 2:
-                    return "Settings";
+                    return "Alarms";
             }
             return null;
         }
