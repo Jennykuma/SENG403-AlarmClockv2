@@ -5,7 +5,19 @@
     <ListView
         android:id="@+id/alarm_List"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CancelButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp">
     </ListView>
+
+    <Button
+        android:id="@+id/CancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="87dp"
+        android:text="Cancel"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
