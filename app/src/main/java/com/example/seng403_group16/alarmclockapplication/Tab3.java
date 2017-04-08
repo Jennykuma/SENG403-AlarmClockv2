@@ -55,18 +55,24 @@ public class Tab3 extends Fragment{
             System.out.println("ArrayList: " + alarms.get(i));
         }
 
+        // ONCLICK CODE FOR CANCEL BUTTON - Matteo Molnar
         final View view = inflater.inflate(R.layout.tab3, container, false);
         final View button = view.findViewById(R.id.CancelButton);
         button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Context context = getContext();
-                        CharSequence text = "Replace with cancel functionality";
-                        int duration = Toast.LENGTH_SHORT;
 
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                        String filePath = getContext().getFilesDir().getPath().toString() + "/alarms.txt";
+                        File savedAlarms = new File(filePath);
+                        if(!savedAlarms.exists()){
+                            Toast.makeText(getContext(), "No alarms are set to cancel", Toast.LENGTH_SHORT).show();
+                        }
+
+                        else {
+                            savedAlarms.delete();
+                            Toast.makeText(getContext(), "Alarm has been cancelled", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         );
