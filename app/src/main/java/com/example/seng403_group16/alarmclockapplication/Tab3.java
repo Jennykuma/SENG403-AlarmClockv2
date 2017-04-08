@@ -1,5 +1,6 @@
 package com.example.seng403_group16.alarmclockapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -53,7 +54,24 @@ public class Tab3 extends Fragment{
         for(int i = 0; i < alarms.size(); i++){
             System.out.println("ArrayList: " + alarms.get(i));
         }
-        return inflater.inflate(R.layout.tab3, container, false);
+
+        final View view = inflater.inflate(R.layout.tab3, container, false);
+        final View button = view.findViewById(R.id.CancelButton);
+        button.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Context context = getContext();
+                        CharSequence text = "Replace with cancel functionality";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                }
+        );
+
+        return view;
     }
 
 }
