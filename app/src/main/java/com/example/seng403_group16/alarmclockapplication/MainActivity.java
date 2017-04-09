@@ -1,5 +1,10 @@
 package com.example.seng403_group16.alarmclockapplication;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +17,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    public static PendingIntent pendingIntent;
+    public static AlarmManager alarmManager;
+    public static AlarmReceiver alarmReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -54,7 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-      
+        alarmReceiver = new AlarmReceiver();
+
+        alarmManager = (AlarmManager)(this.getSystemService(Context.ALARM_SERVICE));
+        registerReceiver(alarmReceiver, new IntentFilter("test"));
+        pendingIntent = PendingIntent.getBroadcast(this, 0, new Intent("test"), 0);
+
+
     }
 
 
@@ -166,6 +180,12 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(getString(R.string.section_format));
             textView.setTextColor(Color.parseColor("#424242"));
             return rootView;
+        }
+
+        @Override
+        public void onStop() {
+
+            super.onStop();
         }
     }
 }
