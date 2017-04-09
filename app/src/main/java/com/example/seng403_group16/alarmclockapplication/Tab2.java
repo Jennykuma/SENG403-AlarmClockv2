@@ -1,10 +1,12 @@
 package com.example.seng403_group16.alarmclockapplication;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.TextViewCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,18 +57,29 @@ public class Tab2 extends Fragment implements View.OnClickListener {
         min = timePicker.getCurrentMinute();
         try {
             String filePath = this.getContext().getFilesDir().getPath().toString() + "/alarms.txt";
+            System.out.println(filePath);
             File output = new File(filePath);
             if(!output.exists()){
                 output.createNewFile();
             }
             FileOutputStream outputStream = new FileOutputStream(output,true);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-            outputStreamWriter.append(hour + " " + min + "\n");
+            outputStreamWriter.write(hour + " " + min + "\n");
             Toast.makeText(getActivity(), "Hour: " + hour + "  Min: " + min, Toast.LENGTH_LONG).show();
             outputStreamWriter.flush();
             outputStreamWriter.close();
         } catch (IOException g){
             Toast.makeText(this.getActivity(), "YOU DUN GOOFED" + g, Toast.LENGTH_SHORT).show();
         }
+        Calendar time = Calendar.getInstance();
+        time.setTimeInMillis(System.currentTimeMillis());
+        time.set(Calendar.HOUR_OF_DAY, hour);
+        time.set(Calendar.MINUTE, min);
+        time.set(Calendar.SECOND, 0);
+
+        //Log message used for testing only
+        Log.d("Alarm time", Long.toString(time.getTimeInMillis()));
+
+        MainActivity.alarmManager.set(AlarmManager.RTC,time.getTimeInMillis(),MainActivity.pendingIntent);
     }
 }
