@@ -43,6 +43,7 @@ public class Tab3 extends Fragment{
                 }
 
                 inputStream.close();
+
             }
         } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
@@ -50,10 +51,19 @@ public class Tab3 extends Fragment{
             Log.e("login activity", "Can not read file: " + e.toString());
         }
 
+        /* WHYY ISNT IT SHOWING IN THE LISTVIEW
+        ListView listView1 = (ListView) getView().findViewById(R.id.alarm_List);
+        String[] items = new String[1];
         //Comment this out later yo
         for(int i = 0; i < alarms.size(); i++){
             System.out.println("ArrayList: " + alarms.get(i));
+            items[i] = alarms.get(i);
         }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(listView1.getContext(),
+                android.R.layout.simple_list_item_1, alarms);
+
+        listView1.setAdapter(adapter);*/
 
         // ONCLICK CODE FOR CANCEL BUTTON - Matteo Molnar
         final View view = inflater.inflate(R.layout.tab3, container, false);

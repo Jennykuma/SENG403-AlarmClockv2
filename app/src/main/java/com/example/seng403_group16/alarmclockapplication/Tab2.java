@@ -65,7 +65,7 @@ public class Tab2 extends Fragment implements View.OnClickListener {
             FileOutputStream outputStream = new FileOutputStream(output,true);
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
             outputStreamWriter.write(hour + " " + min + "\n");
-            Toast.makeText(getActivity(), "Hour: " + hour + "  Min: " + min, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Alarm set for Hour: " + hour + "  Min: " + min, Toast.LENGTH_LONG).show();
             outputStreamWriter.flush();
             outputStreamWriter.close();
         } catch (IOException g){
